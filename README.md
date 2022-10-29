@@ -1,0 +1,11 @@
+# statefulWidget
+- 위젯은 기본적으로 불변 객체라서 무조건 삭제하고 재생성됨 statelessWidget 도 마찬가지임
+- 벗 위젯이 의도적으로 삭제되지 않는한 상태를 갖고 있을 수 있는 방법이 있음
+- 짜라란 statefulWidget!!
+- 애도 기본 원리는 비슷한데 statelessWidget 은 실행되면 바로 build를 실행하지만 statefullWidget 은 State 객체를 호출한다는게 다름.
+- 파라미터 값 변경, setState() 호출에 따라 지니고 있는 값을 유지한 채 변경할 수 있는 방법인데 
+- 파라미터 변경이 감지되면 statefulWidget은 자기에게 할당된 state를 호출하는데 createState 를 통해 상태를 만들거나 이미 있는경우 가져옴
+- State 객체는 최초에는 initState, didChangeDependencies, dirty, build 를 호출해서 최종 적인 위젯을 만들어내고
+- 파라미터 변경시 이미 생성되어 있는 변경의 경우 didUpdateWidget -> drity -> build 호출해서 기존 상태 유지하고 변경된 값에 따라 빌드 함수를 수행한다.
+- setState() 함수를 내부에서 실행한 경우 상태를 dirty로 만들어서 바로 build 함수를 실행함
+- build 안에서 호출되는 각 객체들은 별도로 변수로 만들지 않는다면 새로 생성된다고 보면 된다.
